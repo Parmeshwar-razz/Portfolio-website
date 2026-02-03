@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -121,8 +123,8 @@ export default function SectionsPage() {
                         <button
                             onClick={() => toggleVisibility(section.id, section.is_visible)}
                             className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${section.is_visible
-                                    ? "bg-green-500/10 text-green-400 hover:bg-green-500/20"
-                                    : "bg-red-500/10 text-red-400 hover:bg-red-500/20"
+                                ? "bg-green-500/10 text-green-400 hover:bg-green-500/20"
+                                : "bg-red-500/10 text-red-400 hover:bg-red-500/20"
                                 }`}
                         >
                             {section.is_visible ? (

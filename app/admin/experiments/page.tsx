@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -114,8 +116,8 @@ export default function ExperimentsPage() {
                                 <Beaker className="text-purple-500" size={20} />
                                 <h3 className="text-xl font-bold">{exp.title}</h3>
                                 <span className={`px-2 py-0.5 text-xs rounded-full border ${exp.status === 'Completed'
-                                        ? 'border-green-500/30 text-green-400 bg-green-500/10'
-                                        : 'border-yellow-500/30 text-yellow-400 bg-yellow-500/10'
+                                    ? 'border-green-500/30 text-green-400 bg-green-500/10'
+                                    : 'border-yellow-500/30 text-yellow-400 bg-yellow-500/10'
                                     }`}>
                                     {exp.status}
                                 </span>

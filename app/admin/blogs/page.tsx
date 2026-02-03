@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -109,8 +111,8 @@ export default function BlogsPage() {
                             <div className="flex items-center gap-3 mb-2">
                                 <h3 className="text-xl font-bold">{blog.title}</h3>
                                 <span className={`px-2 py-0.5 text-xs rounded-full border ${blog.status === 'published'
-                                        ? 'border-green-500/30 text-green-400 bg-green-500/10'
-                                        : 'border-yellow-500/30 text-yellow-400 bg-yellow-500/10'
+                                    ? 'border-green-500/30 text-green-400 bg-green-500/10'
+                                    : 'border-yellow-500/30 text-yellow-400 bg-yellow-500/10'
                                     }`}>
                                     {blog.status}
                                 </span>
