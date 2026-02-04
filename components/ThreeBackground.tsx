@@ -2,7 +2,7 @@
 "use client";
 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Stars } from "@react-three/drei";
+import { Sparkles } from "@react-three/drei";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 
@@ -10,9 +10,10 @@ import * as THREE from "three";
 const MetaballsShader = {
     uniforms: {
         uTime: { value: 0 },
-        uColor: { value: new THREE.Color("#888888") }, // Gray
+        // Very dark gray for "without transparency" look
+        uColor: { value: new THREE.Color("#606060") },
         uResolution: { value: new THREE.Vector2() },
-        uScroll: { value: 0 }, // New scroll uniform
+        uScroll: { value: 0 },
     },
     vertexShader: `
     varying vec2 vUv;
@@ -79,10 +80,11 @@ const MetaballsShader = {
         float n = noise(pos * 5.0 + uTime * 0.1);
         intensity *= (0.8 + 0.2 * n);
 
-        // Color mix
-        vec3 color = mix(vec3(0.0), uColor, intensity * 0.6); // 0.6 opacity
+        // Color: Use uColor directly. Do not mix with black.
+        // Alpha: smoothstep intensity to create a sharper, more "solid" edge but still anti-aliased
+        float alpha = smoothstep(0.1, 0.9, intensity);
 
-        gl_FragColor = vec4(color, 1.0);
+        gl_FragColor = vec4(uColor, alpha);
     }
   `
 };
@@ -94,11 +96,11 @@ function ShaderPlane() {
     const uniforms = useMemo(
         () => ({
             uTime: { value: 0 },
-            uColor: { value: new THREE.Color("#888888") },
+            uColor: { value: new THREE.Color("#1a1a1a") },
             uResolution: { value: new THREE.Vector2(size.width, size.height) },
             uScroll: { value: 0 },
         }),
-        [] // Empty dependency array, we update manually
+        []
     );
 
     useFrame((state) => {
@@ -131,14 +133,15 @@ export default function ThreeBackground() {
         <div className="fixed inset-0 z-[-1] h-full w-full bg-black pointer-events-none">
             <Canvas camera={{ position: [0, 0, 1] }}>
                 <group>
-                    <Stars
-                        radius={100}
-                        depth={50}
-                        count={5000}
-                        factor={4}
-                        saturation={0}
-                        fade
-                        speed={1}
+                    {/* Sparkles for dynamic movement */}
+                    <Sparkles
+                        count={200}
+                        scale={[12, 12, 12]}
+                        size={3}
+                        speed={0.4}
+                        opacity={0.5}
+                        noise={0.2}
+                        color="#00f3ff"
                     />
                     <ShaderPlane />
                 </group>
