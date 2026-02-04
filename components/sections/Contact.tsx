@@ -31,7 +31,7 @@ export function Contact() {
     };
 
     return (
-        <section id="contact" className="py-20 bg-black relative overflow-hidden">
+        <section id="contact" className="py-20 bg-transparent relative overflow-hidden">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-neon-blue/10 rounded-full blur-[100px] pointer-events-none"></div>
 
             <div className="container mx-auto px-4 relative z-10">
@@ -56,7 +56,7 @@ export function Contact() {
                                 <div className="p-3 bg-white/5 rounded-lg text-neon-cyan">
                                     <Mail size={20} />
                                 </div>
-                                <span>hello@parmeshwar.dev</span>
+                                <span>parmeshwarrazz6221@gmail.com</span>
                             </div>
                             <div className="flex items-center gap-4 text-gray-300">
                                 <div className="p-3 bg-white/5 rounded-lg text-neon-cyan">

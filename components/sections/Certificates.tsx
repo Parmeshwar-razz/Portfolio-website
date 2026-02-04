@@ -33,7 +33,7 @@ export function Certificates() {
     if (certificates.length === 0) return null;
 
     return (
-        <section className="py-20 bg-black text-white" id="certificates">
+        <section className="py-20 bg-transparent text-white" id="certificates">
             <div className="container mx-auto px-4">
                 <div className="flex items-center gap-4 mb-12">
                     <div className="h-px flex-1 bg-gradient-to-r from-transparent to-neon-cyan/50"></div>

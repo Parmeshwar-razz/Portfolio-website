@@ -30,7 +30,7 @@ export function DataScienceLab() {
     }, []);
 
     return (
-        <section id="lab" className="py-20 bg-black relative">
+        <section id="lab" className="py-20 bg-transparent relative">
             <div className="container mx-auto px-4">
                 <div className="flex items-center gap-4 mb-16">
                     <div className="h-px flex-1 bg-gradient-to-r from-transparent to-purple-500/50"></div>
@@ -48,8 +48,8 @@ export function DataScienceLab() {
                                     <Beaker size={24} />
                                 </div>
                                 <span className={`px-2 py-1 text-xs rounded-full border ${exp.status === 'Completed'
-                                        ? 'border-green-500/30 text-green-400 bg-green-500/10'
-                                        : 'border-yellow-500/30 text-yellow-400 bg-yellow-500/10'
+                                    ? 'border-green-500/30 text-green-400 bg-green-500/10'
+                                    : 'border-yellow-500/30 text-yellow-400 bg-yellow-500/10'
                                     }`}>
                                     {exp.status}
                                 </span>

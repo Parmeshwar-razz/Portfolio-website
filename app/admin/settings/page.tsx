@@ -2,19 +2,21 @@
 
 export const dynamic = "force-dynamic";
 
-
-
 import { useState, useEffect, useRef } from "react";
 import { supabase } from "@/lib/supabase";
 import { Card } from "@/components/ui/Card";
-import { Loader2, Upload, Save, Trash2, Image as ImageIcon } from "lucide-react";
+import { Loader2, Upload, Save, Trash2, Image as ImageIcon, User } from "lucide-react";
 import Image from "next/image";
 
 export default function SettingsPage() {
     const [logoUrl, setLogoUrl] = useState<string | null>(null);
+    const [heroImageUrl, setHeroImageUrl] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
     const [uploading, setUploading] = useState(false);
+    const [uploadingHero, setUploadingHero] = useState(false);
+
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const heroInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         fetchSettings();
@@ -23,27 +25,37 @@ export default function SettingsPage() {
     const fetchSettings = async () => {
         const { data, error } = await supabase
             .from("site_settings")
-            .select("logo_url")
+            .select("logo_url, hero_image_url")
             .single();
 
         if (error) {
-            // If no row exists, we might need to create one, but schema says we insert one initially
             console.error("Error fetching settings:", error);
         } else if (data) {
             setLogoUrl(data.logo_url);
+            setHeroImageUrl(data.hero_image_url);
         }
         setLoading(false);
     };
 
     const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files || e.target.files.length === 0) return;
-
         const file = e.target.files[0];
+        await handleUpload(file, 'logo');
+    };
+
+    const handleHeroImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files || e.target.files.length === 0) return;
+        const file = e.target.files[0];
+        await handleUpload(file, 'hero');
+    };
+
+    const handleUpload = async (file: File, type: 'logo' | 'hero') => {
         const fileExt = file.name.split('.').pop();
-        const fileName = `logo-${Date.now()}.${fileExt}`;
+        const fileName = `${type}-${Date.now()}.${fileExt}`;
         const filePath = `${fileName}`;
 
-        setUploading(true);
+        const setUploadState = type === 'logo' ? setUploading : setUploadingHero;
+        setUploadState(true);
 
         // 1. Upload to Storage
         const { error: uploadError } = await supabase.storage
@@ -51,9 +63,9 @@ export default function SettingsPage() {
             .upload(filePath, file);
 
         if (uploadError) {
-            console.error('Error uploading logo:', uploadError);
-            alert('Failed to upload logo');
-            setUploading(false);
+            console.error(`Error uploading ${type}:`, uploadError);
+            alert(`Failed to upload ${type}`);
+            setUploadState(false);
             return;
         }
 
@@ -63,72 +75,65 @@ export default function SettingsPage() {
             .getPublicUrl(filePath);
 
         // 3. Update Database
-        const { error: dbError } = await supabase
-            .from('site_settings')
-            .update({ logo_url: publicUrl })
-            .neq('id', '00000000-0000-0000-0000-000000000000'); // Update all rows (should be only one)
-        // Note: A better way is to update the single row we know exists. 
-        // Since we don't know the ID, we can fetch it first or just update where id is not null.
-        // Actually, let's just update the first row found or use a known ID if we had one.
-        // For now, let's fetch the ID first in fetchSettings or just update all rows since there's only 1.
+        const updateField = type === 'logo' ? { logo_url: publicUrl } : { hero_image_url: publicUrl };
 
-        // Let's refine the update to be safer:
-        // We need to find the ID of the settings row.
+        // Find ID first since we need a where clause
         const { data: settings } = await supabase.from('site_settings').select('id').limit(1).single();
 
         if (settings) {
             const { error: updateError } = await supabase
                 .from('site_settings')
-                .update({ logo_url: publicUrl })
+                .update(updateField)
                 .eq('id', settings.id);
 
             if (updateError) {
                 console.error('Error updating settings:', updateError);
-                alert('Failed to save logo URL to database');
+                alert('Failed to save URL to database');
             } else {
-                setLogoUrl(publicUrl);
+                if (type === 'logo') setLogoUrl(publicUrl);
+                else setHeroImageUrl(publicUrl);
             }
         } else {
-            // Insert if not exists (should exist from migration)
+            // Insert if not exists
             const { error: insertError } = await supabase
                 .from('site_settings')
-                .insert([{ logo_url: publicUrl }]);
+                .insert([updateField]);
 
             if (insertError) {
                 console.error('Error inserting settings:', insertError);
             } else {
-                setLogoUrl(publicUrl);
+                if (type === 'logo') setLogoUrl(publicUrl);
+                else setHeroImageUrl(publicUrl);
             }
         }
+        setUploadState(false);
+    }
 
-        setUploading(false);
-    };
+    const removeImage = async (type: 'logo' | 'hero') => {
+        if (!confirm(`Are you sure you want to remove the ${type}?`)) return;
 
-    const removeLogo = async () => {
-        if (!confirm("Are you sure you want to remove the logo?")) return;
-
-        setUploading(true);
-
-        // We don't necessarily need to delete the file from storage, just clear the URL from DB.
-        // But cleaning up storage is good.
-        // For now, just clear DB to be safe.
+        const setUploadState = type === 'logo' ? setUploading : setUploadingHero;
+        setUploadState(true);
 
         const { data: settings } = await supabase.from('site_settings').select('id').limit(1).single();
 
         if (settings) {
+            const updateField = type === 'logo' ? { logo_url: null } : { hero_image_url: null };
+
             const { error } = await supabase
                 .from('site_settings')
-                .update({ logo_url: null })
+                .update(updateField)
                 .eq('id', settings.id);
 
             if (error) {
-                console.error("Error removing logo:", error);
-                alert("Failed to remove logo");
+                console.error(`Error removing ${type}:`, error);
+                alert(`Failed to remove ${type}`);
             } else {
-                setLogoUrl(null);
+                if (type === 'logo') setLogoUrl(null);
+                else setHeroImageUrl(null);
             }
         }
-        setUploading(false);
+        setUploadState(false);
     };
 
     if (loading) return <div className="p-8 flex justify-center"><Loader2 className="animate-spin text-neon-cyan" /></div>;
@@ -141,26 +146,20 @@ export default function SettingsPage() {
             </div>
 
             <Card className="p-6 space-y-6">
-                <div>
+                {/* Logo Section */}
+                <div className="border-b border-white/10 pb-6">
                     <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
                         <ImageIcon size={20} className="text-neon-cyan" />
                         Website Logo
                     </h3>
                     <p className="text-gray-400 mb-4 text-sm">
-                        Upload a logo to replace the default "PR." text in the navigation bar.
-                        Recommended size: 100x100px or similar square/rectangular aspect ratio.
+                        Upload a logo to replace the default "PR." text.
                     </p>
 
                     <div className="flex items-start gap-6">
-                        <div className="w-32 h-32 bg-black/50 rounded-full border border-white/10 flex items-center justify-center overflow-hidden relative group">
+                        <div className="w-32 h-32 bg-black/50 rounded-full border border-white/10 flex items-center justify-center overflow-hidden relative">
                             {logoUrl ? (
-                                <Image
-                                    src={logoUrl}
-                                    alt="Site Logo"
-                                    width={128}
-                                    height={128}
-                                    className="object-cover w-full h-full"
-                                />
+                                <Image src={logoUrl} alt="Logo" width={128} height={128} className="object-cover w-full h-full" />
                             ) : (
                                 <span className="text-2xl font-bold text-gray-600">PR.</span>
                             )}
@@ -176,32 +175,59 @@ export default function SettingsPage() {
                                     {uploading ? <Loader2 className="animate-spin" size={18} /> : <Upload size={18} />}
                                     Upload Logo
                                 </button>
-                                <input
-                                    type="file"
-                                    ref={fileInputRef}
-                                    onChange={handleLogoUpload}
-                                    accept="image/*"
-                                    className="hidden"
-                                />
+                                <input type="file" ref={fileInputRef} onChange={handleLogoUpload} accept="image/*" className="hidden" />
 
                                 {logoUrl && (
-                                    <button
-                                        onClick={removeLogo}
-                                        disabled={uploading}
-                                        className="px-4 py-2 bg-red-500/10 text-red-400 font-bold rounded-lg hover:bg-red-500/20 transition-colors flex items-center gap-2 disabled:opacity-50"
-                                    >
-                                        <Trash2 size={18} />
-                                        Remove
+                                    <button onClick={() => removeImage('logo')} disabled={uploading} className="px-4 py-2 bg-red-500/10 text-red-400 font-bold rounded-lg hover:bg-red-500/20 flex items-center gap-2">
+                                        <Trash2 size={18} /> Remove
                                     </button>
                                 )}
                             </div>
-                            <p className="text-xs text-gray-500">
-                                Supported formats: PNG, JPG, SVG, WEBP
-                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Hero Image Section */}
+                <div>
+                    <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                        <User size={20} className="text-neon-cyan" />
+                        Hero Image
+                    </h3>
+                    <p className="text-gray-400 mb-4 text-sm">
+                        Upload a photo for the Hero section (replaces the 3D placeholder).
+                    </p>
+
+                    <div className="flex items-start gap-6">
+                        <div className="w-32 h-32 bg-black/50 rounded-full border border-white/10 flex items-center justify-center overflow-hidden relative">
+                            {heroImageUrl ? (
+                                <Image src={heroImageUrl} alt="Hero" width={128} height={128} className="object-cover w-full h-full" />
+                            ) : (
+                                <User className="text-gray-600" size={40} />
+                            )}
+                        </div>
+
+                        <div className="space-y-3">
+                            <div className="flex gap-3">
+                                <button
+                                    onClick={() => heroInputRef.current?.click()}
+                                    disabled={uploadingHero}
+                                    className="px-4 py-2 bg-neon-cyan text-black font-bold rounded-lg hover:bg-neon-cyan/80 transition-colors flex items-center gap-2 disabled:opacity-50"
+                                >
+                                    {uploadingHero ? <Loader2 className="animate-spin" size={18} /> : <Upload size={18} />}
+                                    Upload Photo
+                                </button>
+                                <input type="file" ref={heroInputRef} onChange={handleHeroImageUpload} accept="image/*" className="hidden" />
+
+                                {heroImageUrl && (
+                                    <button onClick={() => removeImage('hero')} disabled={uploadingHero} className="px-4 py-2 bg-red-500/10 text-red-400 font-bold rounded-lg hover:bg-red-500/20 flex items-center gap-2">
+                                        <Trash2 size={18} /> Remove
+                                    </button>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
             </Card>
-        </div >
+        </div>
     );
 }

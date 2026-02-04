@@ -56,7 +56,7 @@ export function Skills() {
     if (loading) return null; // Or a skeleton loader
 
     return (
-        <section id="skills" className="py-20 bg-black/50">
+        <section id="skills" className="py-20 bg-transparent">
             <div className="container mx-auto px-4">
                 <div className="flex items-center gap-4 mb-16">
                     <div className="h-px flex-1 bg-gradient-to-r from-transparent to-neon-blue/50"></div>

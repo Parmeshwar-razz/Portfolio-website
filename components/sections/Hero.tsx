@@ -2,38 +2,34 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
-import { ArrowRight, Download, Database, Brain, LineChart } from "lucide-react";
+import { ArrowRight, Download, User } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import Image from "next/image";
 
 export function Hero() {
     const [resumeUrl, setResumeUrl] = useState<string | null>(null);
+    const [heroImageUrl, setHeroImageUrl] = useState<string | null>(null);
 
     useEffect(() => {
-        const fetchResume = async () => {
+        const fetchSettings = async () => {
             const { data } = await supabase
                 .from("site_settings")
-                .select("resume_url")
+                .select("resume_url, hero_image_url")
                 .single();
-            if (data?.resume_url) {
-                setResumeUrl(data.resume_url);
+            if (data) {
+                if (data.resume_url) setResumeUrl(data.resume_url);
+                if (data.hero_image_url) setHeroImageUrl(data.hero_image_url);
             }
         };
-        fetchResume();
+        fetchSettings();
     }, []);
 
     return (
         <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-            {/* Background Elements */}
-            <div className="absolute top-0 left-0 w-full h-full z-0">
-                <div className="absolute top-20 left-20 w-72 h-72 bg-neon-blue/20 rounded-full blur-[100px] animate-pulse"></div>
-                <div className="absolute bottom-20 right-20 w-96 h-96 bg-neon-cyan/10 rounded-full blur-[100px]"></div>
-                {/* Data Grid Effect */}
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(0,243,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,243,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]"></div>
-            </div>
-
+            {/* Content Overlay */}
             <div className="container mx-auto px-4 relative z-10 grid md:grid-cols-2 gap-12 items-center">
                 <div className="space-y-6 text-center md:text-left">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-neon-cyan text-sm font-medium mb-4">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-neon-cyan text-sm font-medium mb-4 backdrop-blur-md">
                         <span className="relative flex h-2 w-2">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon-cyan opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-neon-cyan"></span>
@@ -41,13 +37,13 @@ export function Hero() {
                         Open to Data Science Roles
                     </div>
 
-                    <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+                    <h1 className="text-5xl md:text-7xl font-bold leading-tight text-white drop-shadow-lg">
                         Data Scientist &
                         <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-blue">ML Engineer</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-blue filter drop-shadow hover:brightness-125 transition-all">ML Engineer</span>
                     </h1>
 
-                    <p className="text-gray-400 text-lg max-w-lg mx-auto md:mx-0">
+                    <p className="text-gray-300 text-lg max-w-lg mx-auto md:mx-0 drop-shadow-md">
                         Transforming complex data into actionable insights. Specializing in Machine Learning, Predictive Analytics, and building scalable AI solutions.
                     </p>
 
@@ -65,26 +61,34 @@ export function Hero() {
                     </div>
                 </div>
 
-                <div className="relative">
-                    <div className="relative w-full aspect-square max-w-md mx-auto">
-                        <div className="absolute inset-0 bg-gradient-to-tr from-neon-blue to-neon-cyan rounded-full opacity-20 blur-2xl animate-pulse"></div>
-                        <div className="relative w-full h-full rounded-full border-2 border-white/10 bg-black/50 backdrop-blur-sm overflow-hidden flex items-center justify-center group">
-                            {/* Animated Data Icons */}
-                            <div className="absolute top-1/4 left-1/4 p-3 bg-black/80 rounded-xl border border-white/10 text-neon-cyan animate-bounce delay-100">
-                                <Database size={24} />
-                            </div>
-                            <div className="absolute top-1/3 right-1/4 p-3 bg-black/80 rounded-xl border border-white/10 text-neon-blue animate-bounce delay-300">
-                                <Brain size={24} />
-                            </div>
-                            <div className="absolute bottom-1/3 left-1/3 p-3 bg-black/80 rounded-xl border border-white/10 text-purple-500 animate-bounce delay-500">
-                                <LineChart size={24} />
-                            </div>
+                <div className="relative flex justify-center items-center">
+                    {/* Glassmorphic Card/Frame for User Image */}
+                    <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full border-4 border-neon-cyan/30 bg-black/40 backdrop-blur-md overflow-hidden flex items-center justify-center shadow-[0_0_40px_rgba(0,243,255,0.2)] group transition-all duration-500 hover:shadow-[0_0_60px_rgba(0,243,255,0.4)]">
 
-                            <span className="text-8xl filter drop-shadow-[0_0_15px_rgba(0,243,255,0.5)]">📊</span>
+                        <div className="w-full h-full relative">
+                            {heroImageUrl ? (
+                                <Image
+                                    src={heroImageUrl}
+                                    alt="Profile"
+                                    fill
+                                    className="object-cover"
+                                    priority
+                                />
+                            ) : (
+                                <div className="w-full h-full flex flex-col items-center justify-center text-white/50 bg-gradient-to-b from-transparent to-black/80">
+                                    <User size={64} className="mb-4 text-neon-cyan opacity-80" />
+                                    <span className="text-sm font-medium">Add Your Photo</span>
+                                </div>
+                            )}
                         </div>
+
+                        {/* Decorative Orbit/Ring */}
+                        <div className="absolute inset-0 border border-white/10 rounded-full animate-[spin_10s_linear_infinite] opacity-60"></div>
+                        <div className="absolute -inset-4 border border-neon-blue/20 rounded-full animate-[spin_15s_linear_infinite_reverse] opacity-40"></div>
                     </div>
                 </div>
             </div>
         </section>
     );
 }
+
