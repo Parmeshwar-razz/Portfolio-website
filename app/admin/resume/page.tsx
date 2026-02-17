@@ -89,7 +89,7 @@ export default function ResumePage() {
 
             <Card className="p-8 max-w-xl bg-white/5 border-white/10">
                 <div className="flex flex-col items-center justify-center gap-6 text-center">
-                    <div className="p-4 bg-neon-cyan/10 rounded-full text-neon-cyan">
+                    <div className="p-4 bg-white/10 rounded-full text-white">
                         <FileText size={48} />
                     </div>
 
@@ -101,7 +101,7 @@ export default function ResumePage() {
                                     href={resumeUrl}
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="text-neon-cyan hover:underline flex items-center gap-1"
+                                    className="text-white hover:underline flex items-center gap-1"
                                 >
                                     View Current Resume <Download size={14} />
                                 </a>

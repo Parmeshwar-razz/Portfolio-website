@@ -181,7 +181,7 @@ export default function SkillsPage() {
                 {categories.map((category) => (
                     <Card key={category.id} className="p-6 bg-white/5 border-white/10">
                         <div className="flex justify-between items-center mb-4 border-b border-white/10 pb-4">
-                            <h3 className="text-xl font-bold text-neon-cyan">{category.name}</h3>
+                            <h3 className="text-xl font-bold text-white">{category.name}</h3>
                             <div className="flex gap-2">
                                 <Button variant="ghost" size="sm" onClick={() => openEditCategoryModal(category)}>
                                     <Pencil size={16} />
@@ -194,7 +194,7 @@ export default function SkillsPage() {
 
                         <div className="flex flex-wrap gap-3">
                             {category.skills?.map((skill) => (
-                                <div key={skill.id} className="group flex items-center gap-2 px-3 py-1.5 bg-black border border-white/10 rounded-full hover:border-neon-blue/50 transition-colors">
+                                <div key={skill.id} className="group flex items-center gap-2 px-3 py-1.5 bg-black border border-white/10 rounded-full hover:border-white/50 transition-colors">
                                     <span className="text-sm text-gray-300 group-hover:text-white">{skill.name}</span>
                                     <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity border-l border-white/10 pl-2 ml-1">
                                         <button onClick={() => openEditSkillModal(skill)} className="text-blue-400 hover:text-blue-300">
@@ -230,7 +230,7 @@ export default function SkillsPage() {
                             type="text"
                             value={categoryName}
                             onChange={(e) => setCategoryName(e.target.value)}
-                            className="w-full px-4 py-2 rounded-lg bg-black border border-white/10 focus:border-neon-blue outline-none text-white"
+                            className="w-full px-4 py-2 rounded-lg bg-black border border-white/10 focus:border-white outline-none text-white"
                             required
                         />
                     </div>
@@ -254,7 +254,7 @@ export default function SkillsPage() {
                             type="text"
                             value={skillName}
                             onChange={(e) => setSkillName(e.target.value)}
-                            className="w-full px-4 py-2 rounded-lg bg-black border border-white/10 focus:border-neon-blue outline-none text-white"
+                            className="w-full px-4 py-2 rounded-lg bg-black border border-white/10 focus:border-white outline-none text-white"
                             required
                         />
                     </div>

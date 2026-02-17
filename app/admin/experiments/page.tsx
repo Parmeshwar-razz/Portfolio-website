@@ -115,7 +115,7 @@ export default function ExperimentsPage() {
                     <Card key={exp.id} className="p-6 flex justify-between items-center bg-white/5 border-white/10">
                         <div>
                             <div className="flex items-center gap-3 mb-2">
-                                <Beaker className="text-purple-500" size={20} />
+                                <Beaker className="text-white" size={20} />
                                 <h3 className="text-xl font-bold">{exp.title}</h3>
                                 <span className={`px-2 py-0.5 text-xs rounded-full border ${exp.status === 'Completed'
                                     ? 'border-green-500/30 text-green-400 bg-green-500/10'
@@ -157,7 +157,7 @@ export default function ExperimentsPage() {
                             type="text"
                             value={formData.title}
                             onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                            className="w-full bg-black border border-white/10 rounded-lg p-2 focus:border-neon-cyan outline-none"
+                            className="w-full bg-black border border-white/10 rounded-lg p-2 focus:border-white outline-none"
                             required
                         />
                     </div>
@@ -166,7 +166,7 @@ export default function ExperimentsPage() {
                         <textarea
                             value={formData.description}
                             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                            className="w-full h-24 bg-black border border-white/10 rounded-lg p-2 focus:border-neon-cyan outline-none"
+                            className="w-full h-24 bg-black border border-white/10 rounded-lg p-2 focus:border-white outline-none"
                             required
                         />
                     </div>
@@ -176,7 +176,7 @@ export default function ExperimentsPage() {
                             type="text"
                             value={formData.tech_stack}
                             onChange={(e) => setFormData({ ...formData, tech_stack: e.target.value })}
-                            className="w-full bg-black border border-white/10 rounded-lg p-2 focus:border-neon-cyan outline-none"
+                            className="w-full bg-black border border-white/10 rounded-lg p-2 focus:border-white outline-none"
                             placeholder="Python, Pandas, PyTorch"
                             required
                         />
@@ -188,7 +188,7 @@ export default function ExperimentsPage() {
                                 type="url"
                                 value={formData.notebook_url}
                                 onChange={(e) => setFormData({ ...formData, notebook_url: e.target.value })}
-                                className="w-full bg-black border border-white/10 rounded-lg p-2 focus:border-neon-cyan outline-none"
+                                className="w-full bg-black border border-white/10 rounded-lg p-2 focus:border-white outline-none"
                             />
                         </div>
                         <div>
@@ -197,7 +197,7 @@ export default function ExperimentsPage() {
                                 type="url"
                                 value={formData.dataset_url}
                                 onChange={(e) => setFormData({ ...formData, dataset_url: e.target.value })}
-                                className="w-full bg-black border border-white/10 rounded-lg p-2 focus:border-neon-cyan outline-none"
+                                className="w-full bg-black border border-white/10 rounded-lg p-2 focus:border-white outline-none"
                             />
                         </div>
                     </div>
@@ -206,7 +206,7 @@ export default function ExperimentsPage() {
                         <select
                             value={formData.status}
                             onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                            className="w-full bg-black border border-white/10 rounded-lg p-2 focus:border-neon-cyan outline-none"
+                            className="w-full bg-black border border-white/10 rounded-lg p-2 focus:border-white outline-none"
                         >
                             <option value="In Progress">In Progress</option>
                             <option value="Completed">Completed</option>

@@ -42,9 +42,9 @@ export function DataScienceLab() {
 
                 <div className="grid md:grid-cols-2 gap-8">
                     {experiments.map((exp) => (
-                        <div key={exp.id} className="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-purple-500/30 transition-all group">
+                        <div key={exp.id} className="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-purple-500/30 active:border-purple-500/30 transition-all group">
                             <div className="flex justify-between items-start mb-4">
-                                <div className="p-3 bg-purple-500/10 rounded-lg text-purple-400 group-hover:bg-purple-500 group-hover:text-white transition-colors">
+                                <div className="p-3 bg-purple-500/10 rounded-lg text-purple-400 group-hover:bg-purple-500 group-active:bg-purple-500 group-hover:text-white group-active:text-white transition-colors">
                                     <Beaker size={24} />
                                 </div>
                                 <span className={`px-2 py-1 text-xs rounded-full border ${exp.status === 'Completed'
@@ -55,7 +55,7 @@ export function DataScienceLab() {
                                 </span>
                             </div>
 
-                            <h3 className="text-xl font-bold mb-2 group-hover:text-purple-400 transition-colors">{exp.title}</h3>
+                            <h3 className="text-xl font-bold mb-2 group-hover:text-purple-400 group-active:text-purple-400 transition-colors">{exp.title}</h3>
                             <p className="text-gray-400 text-sm mb-4">{exp.description}</p>
 
                             <div className="flex flex-wrap gap-2 mb-6">
@@ -68,12 +68,12 @@ export function DataScienceLab() {
 
                             <div className="flex gap-4 pt-4 border-t border-white/10">
                                 {exp.notebook_url && (
-                                    <a href={exp.notebook_url} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
+                                    <a href={exp.notebook_url} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-gray-400 hover:text-white active:text-white transition-colors">
                                         <FileCode size={16} /> Notebook
                                     </a>
                                 )}
                                 {exp.dataset_url && (
-                                    <a href={exp.dataset_url} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
+                                    <a href={exp.dataset_url} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-gray-400 hover:text-white active:text-white transition-colors">
                                         <Database size={16} /> Dataset
                                     </a>
                                 )}

@@ -163,7 +163,7 @@ export default function AdminProjectsPage() {
         setIsModalOpen(true);
     };
 
-    if (loading && projects.length === 0) return <Loader2 className="animate-spin text-neon-cyan mx-auto mt-20" />;
+    if (loading && projects.length === 0) return <Loader2 className="animate-spin text-white mx-auto mt-20" />;
 
     return (
         <div className="space-y-6">
@@ -174,7 +174,7 @@ export default function AdminProjectsPage() {
                 </div>
                 <button
                     onClick={openNewModal}
-                    className="px-4 py-2 bg-neon-blue text-white font-bold rounded-lg hover:bg-neon-blue/80 transition-colors flex items-center gap-2"
+                    className="px-4 py-2 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-colors flex items-center gap-2"
                 >
                     <Plus size={20} /> New Project
                 </button>
@@ -182,7 +182,7 @@ export default function AdminProjectsPage() {
 
             <div className="grid gap-4">
                 {projects.map((project) => (
-                    <Card key={project.id} className="p-6 flex flex-col md:flex-row gap-6 border-l-4 border-l-neon-blue bg-white/5 border-white/10 hover:border-white/20 transition-all">
+                    <Card key={project.id} className="p-6 flex flex-col md:flex-row gap-6 border-l-4 border-l-white bg-white/5 border-white/10 hover:border-white/20 transition-all">
                         {/* Image Preview in List */}
                         <div className="relative w-full md:w-48 aspect-video bg-black/50 rounded-lg overflow-hidden border border-white/10 shrink-0">
                             {project.image_url ? (
@@ -208,7 +208,7 @@ export default function AdminProjectsPage() {
                                     }`}>
                                     {project.status.toUpperCase()}
                                 </span>
-                                <span className="text-sm text-neon-blue bg-neon-blue/10 px-2 py-0.5 rounded">
+                                <span className="text-sm text-gray-300 bg-white/10 px-2 py-0.5 rounded">
                                     {project.category}
                                 </span>
                             </div>
@@ -236,7 +236,7 @@ export default function AdminProjectsPage() {
 
                             <button
                                 onClick={() => openEditModal(project)}
-                                className="p-2 bg-blue-500/10 text-blue-400 rounded hover:bg-blue-500/20 transition-colors"
+                                className="p-2 bg-white/10 text-white rounded hover:bg-white/20 transition-colors"
                                 title="Edit"
                             >
                                 <Pencil size={18} />
@@ -264,7 +264,7 @@ export default function AdminProjectsPage() {
                     <div className="flex justify-center mb-6">
                         <div
                             onClick={() => fileInputRef.current?.click()}
-                            className="w-full h-48 bg-white/5 border-2 border-dashed border-white/20 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-neon-blue/50 transition-colors relative overflow-hidden group"
+                            className="w-full h-48 bg-white/5 border-2 border-dashed border-white/20 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-white/50 transition-colors relative overflow-hidden group"
                         >
                             {formData.image_url ? (
                                 <>
@@ -300,7 +300,7 @@ export default function AdminProjectsPage() {
                             type="text"
                             value={formData.title}
                             onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                            className="w-full px-4 py-2 rounded-lg bg-black border border-white/10 focus:border-neon-blue outline-none text-white"
+                            className="w-full px-4 py-2 rounded-lg bg-black border border-white/10 focus:border-white outline-none text-white"
                             required
                         />
                     </div>
@@ -311,7 +311,7 @@ export default function AdminProjectsPage() {
                             <select
                                 value={formData.category}
                                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                                className="w-full px-4 py-2 rounded-lg bg-black border border-white/10 focus:border-neon-blue outline-none text-white"
+                                className="w-full px-4 py-2 rounded-lg bg-black border border-white/10 focus:border-white outline-none text-white"
                             >
                                 <option value="Full Stack">Full Stack</option>
                                 <option value="Data Science">Data Science</option>
@@ -324,7 +324,7 @@ export default function AdminProjectsPage() {
                             <select
                                 value={formData.status}
                                 onChange={(e) => setFormData({ ...formData, status: e.target.value as 'active' | 'hidden' })}
-                                className="w-full px-4 py-2 rounded-lg bg-black border border-white/10 focus:border-neon-blue outline-none text-white"
+                                className="w-full px-4 py-2 rounded-lg bg-black border border-white/10 focus:border-white outline-none text-white"
                             >
                                 <option value="active">Active</option>
                                 <option value="hidden">Hidden</option>
@@ -338,7 +338,7 @@ export default function AdminProjectsPage() {
                             type="text"
                             value={formData.tech_stack?.join(", ")}
                             onChange={(e) => setFormData({ ...formData, tech_stack: e.target.value.split(",").map(t => t.trim()) })}
-                            className="w-full px-4 py-2 rounded-lg bg-black border border-white/10 focus:border-neon-blue outline-none text-white"
+                            className="w-full px-4 py-2 rounded-lg bg-black border border-white/10 focus:border-white outline-none text-white"
                             placeholder="React, Node.js, Python"
                         />
                     </div>
@@ -348,7 +348,7 @@ export default function AdminProjectsPage() {
                         <textarea
                             value={formData.description}
                             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                            className="w-full px-4 py-2 rounded-lg bg-black border border-white/10 focus:border-neon-blue outline-none text-white h-32"
+                            className="w-full px-4 py-2 rounded-lg bg-black border border-white/10 focus:border-white outline-none text-white h-32"
                             required
                         />
                     </div>
@@ -360,7 +360,7 @@ export default function AdminProjectsPage() {
                                 type="url"
                                 value={formData.github_url}
                                 onChange={(e) => setFormData({ ...formData, github_url: e.target.value })}
-                                className="w-full px-4 py-2 rounded-lg bg-black border border-white/10 focus:border-neon-blue outline-none text-white"
+                                className="w-full px-4 py-2 rounded-lg bg-black border border-white/10 focus:border-white outline-none text-white"
                             />
                         </div>
                         <div>
@@ -369,7 +369,7 @@ export default function AdminProjectsPage() {
                                 type="url"
                                 value={formData.live_url}
                                 onChange={(e) => setFormData({ ...formData, live_url: e.target.value })}
-                                className="w-full px-4 py-2 rounded-lg bg-black border border-white/10 focus:border-neon-blue outline-none text-white"
+                                className="w-full px-4 py-2 rounded-lg bg-black border border-white/10 focus:border-white outline-none text-white"
                             />
                         </div>
                     </div>
@@ -377,7 +377,7 @@ export default function AdminProjectsPage() {
                     <button
                         type="submit"
                         disabled={loading || uploading}
-                        className="w-full py-3 rounded-lg bg-neon-blue text-white font-bold hover:bg-neon-blue/80 transition-all flex items-center justify-center gap-2 mt-4"
+                        className="w-full py-3 rounded-lg bg-white text-black font-bold hover:bg-gray-200 transition-all flex items-center justify-center gap-2 mt-4"
                     >
                         {loading ? <Loader2 className="animate-spin" size={20} /> : (editingProject ? "Update Project" : "Create Project")}
                     </button>

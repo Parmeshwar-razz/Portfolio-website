@@ -9,8 +9,7 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                'neon-cyan': '#00f3ff',
-                'neon-blue': '#0066ff',
+                // neon colors removed
             },
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

@@ -32,15 +32,15 @@ export function Contact() {
 
     return (
         <section id="contact" className="py-20 bg-transparent relative overflow-hidden">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-neon-blue/10 rounded-full blur-[100px] pointer-events-none"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-white/5 rounded-full blur-[100px] pointer-events-none"></div>
 
             <div className="container mx-auto px-4 relative z-10">
                 <div className="flex items-center gap-4 mb-16">
-                    <div className="h-px flex-1 bg-gradient-to-r from-transparent to-neon-cyan/50"></div>
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent to-white/20"></div>
                     <h2 className="text-3xl md:text-4xl font-bold text-center">
-                        Get In <span className="text-neon-cyan">Touch</span>
+                        Get In <span className="text-white">Touch</span>
                     </h2>
-                    <div className="h-px flex-1 bg-gradient-to-l from-transparent to-neon-cyan/50"></div>
+                    <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/20"></div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
@@ -53,13 +53,13 @@ export function Contact() {
 
                         <div className="space-y-4">
                             <div className="flex items-center gap-4 text-gray-300">
-                                <div className="p-3 bg-white/5 rounded-lg text-neon-cyan">
+                                <div className="p-3 bg-white/5 rounded-lg text-white">
                                     <Mail size={20} />
                                 </div>
                                 <span>parmeshwarrazz6221@gmail.com</span>
                             </div>
                             <div className="flex items-center gap-4 text-gray-300">
-                                <div className="p-3 bg-white/5 rounded-lg text-neon-cyan">
+                                <div className="p-3 bg-white/5 rounded-lg text-white">
                                     <MapPin size={20} />
                                 </div>
                                 <span>Remote / Worldwide</span>
@@ -74,7 +74,7 @@ export function Contact() {
                                 type="text"
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                className="w-full px-4 py-3 rounded-lg bg-black/50 border border-white/10 focus:border-neon-cyan outline-none text-white transition-colors"
+                                className="w-full px-4 py-3 rounded-lg bg-black/50 border border-white/10 focus:border-white/50 outline-none text-white transition-colors"
                                 required
                             />
                         </div>
@@ -84,7 +84,7 @@ export function Contact() {
                                 type="email"
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                className="w-full px-4 py-3 rounded-lg bg-black/50 border border-white/10 focus:border-neon-cyan outline-none text-white transition-colors"
+                                className="w-full px-4 py-3 rounded-lg bg-black/50 border border-white/10 focus:border-white/50 outline-none text-white transition-colors"
                                 required
                             />
                         </div>
@@ -93,7 +93,7 @@ export function Contact() {
                             <textarea
                                 value={formData.message}
                                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                className="w-full px-4 py-3 rounded-lg bg-black/50 border border-white/10 focus:border-neon-cyan outline-none text-white transition-colors h-32 resize-none"
+                                className="w-full px-4 py-3 rounded-lg bg-black/50 border border-white/10 focus:border-white/50 outline-none text-white transition-colors h-32 resize-none"
                                 required
                             />
                         </div>

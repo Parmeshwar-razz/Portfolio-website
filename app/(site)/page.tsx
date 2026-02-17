@@ -59,7 +59,7 @@ export default function Home() {
     if (loading) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-black">
-                <Loader2 className="animate-spin text-neon-cyan" size={48} />
+                <Loader2 className="animate-spin text-white" size={48} />
             </div>
         );
     }

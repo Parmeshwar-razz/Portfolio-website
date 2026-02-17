@@ -41,11 +41,11 @@ export function Navbar() {
         <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-black/80 backdrop-blur-md border-b border-white/10 py-4" : "bg-transparent py-6"
             }`}>
             <div className="container mx-auto px-4 flex justify-between items-center">
-                <Link href="/" className="text-2xl font-bold font-mono tracking-tighter hover:text-neon-cyan transition-colors">
+                <Link href="/" className="text-2xl font-bold font-mono tracking-tighter hover:text-white transition-colors">
                     {logoUrl ? (
                         <img src={logoUrl} alt="Logo" className="h-10 w-10 rounded-full object-cover" />
                     ) : (
-                        <span>PR<span className="text-neon-cyan">.</span></span>
+                        <span>PR<span className="text-white">.</span></span>
                     )}
                 </Link>
 
@@ -55,7 +55,7 @@ export function Navbar() {
                         <Link
                             key={link.name}
                             href={link.href}
-                            className="text-sm font-medium text-gray-300 hover:text-neon-cyan transition-colors"
+                            className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
                         >
                             {link.name}
                         </Link>
@@ -87,7 +87,7 @@ export function Navbar() {
                         <Link
                             key={link.name}
                             href={link.href}
-                            className="text-lg font-medium text-gray-300 hover:text-neon-cyan transition-colors"
+                            className="text-lg font-medium text-gray-300 hover:text-white transition-colors"
                             onClick={() => setIsOpen(false)}
                         >
                             {link.name}

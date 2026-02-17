@@ -26,21 +26,23 @@ export function Hero() {
 
     return (
         <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+            {/* Solid black background to hide global metaballs for this section only */}
+
             {/* Content Overlay */}
             <div className="container mx-auto px-4 relative z-10 grid md:grid-cols-2 gap-12 items-center">
                 <div className="space-y-6 text-center md:text-left">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-neon-cyan text-sm font-medium mb-4 backdrop-blur-md">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm font-medium mb-4 backdrop-blur-md">
                         <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon-cyan opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-neon-cyan"></span>
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
                         </span>
                         Open to Data Science Roles
                     </div>
 
-                    <h1 className="text-5xl md:text-7xl font-bold leading-tight text-white drop-shadow-lg">
+                    <h1 className="text-5xl md:text-7xl font-bold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500 drop-shadow-lg">
                         Data Scientist &
                         <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-blue filter drop-shadow hover:brightness-125 transition-all">ML Engineer</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500 filter drop-shadow hover:brightness-125 transition-all">ML Engineer</span>
                     </h1>
 
                     <p className="text-gray-300 text-lg max-w-lg mx-auto md:mx-0 drop-shadow-md">
@@ -63,7 +65,7 @@ export function Hero() {
 
                 <div className="relative flex justify-center items-center">
                     {/* Glassmorphic Card/Frame for User Image */}
-                    <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full border-4 border-neon-cyan/30 bg-black/40 backdrop-blur-md overflow-hidden flex items-center justify-center shadow-[0_0_40px_rgba(0,243,255,0.2)] group transition-all duration-500 hover:shadow-[0_0_60px_rgba(0,243,255,0.4)]">
+                    <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full border-4 border-white/10 bg-black/40 backdrop-blur-md overflow-hidden flex items-center justify-center shadow-[0_0_40px_rgba(255,255,255,0.1)] group transition-all duration-500 hover:shadow-[0_0_60px_rgba(255,255,255,0.2)] active:shadow-[0_0_60px_rgba(255,255,255,0.2)]">
 
                         <div className="w-full h-full relative">
                             {heroImageUrl ? (
@@ -76,7 +78,7 @@ export function Hero() {
                                 />
                             ) : (
                                 <div className="w-full h-full flex flex-col items-center justify-center text-white/50 bg-gradient-to-b from-transparent to-black/80">
-                                    <User size={64} className="mb-4 text-neon-cyan opacity-80" />
+                                    <User size={64} className="mb-4 text-white opacity-80" />
                                     <span className="text-sm font-medium">Add Your Photo</span>
                                 </div>
                             )}
@@ -84,7 +86,7 @@ export function Hero() {
 
                         {/* Decorative Orbit/Ring */}
                         <div className="absolute inset-0 border border-white/10 rounded-full animate-[spin_10s_linear_infinite] opacity-60"></div>
-                        <div className="absolute -inset-4 border border-neon-blue/20 rounded-full animate-[spin_15s_linear_infinite_reverse] opacity-40"></div>
+                        <div className="absolute -inset-4 border border-white/5 rounded-full animate-[spin_15s_linear_infinite_reverse] opacity-40"></div>
                     </div>
                 </div>
             </div>

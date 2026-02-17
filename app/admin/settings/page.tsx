@@ -136,7 +136,7 @@ export default function SettingsPage() {
         setUploadState(false);
     };
 
-    if (loading) return <div className="p-8 flex justify-center"><Loader2 className="animate-spin text-neon-cyan" /></div>;
+    if (loading) return <div className="p-8 flex justify-center"><Loader2 className="animate-spin text-white" /></div>;
 
     return (
         <div className="space-y-6">
@@ -149,7 +149,7 @@ export default function SettingsPage() {
                 {/* Logo Section */}
                 <div className="border-b border-white/10 pb-6">
                     <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                        <ImageIcon size={20} className="text-neon-cyan" />
+                        <ImageIcon size={20} className="text-white" />
                         Website Logo
                     </h3>
                     <p className="text-gray-400 mb-4 text-sm">
@@ -170,7 +170,7 @@ export default function SettingsPage() {
                                 <button
                                     onClick={() => fileInputRef.current?.click()}
                                     disabled={uploading}
-                                    className="px-4 py-2 bg-neon-cyan text-black font-bold rounded-lg hover:bg-neon-cyan/80 transition-colors flex items-center gap-2 disabled:opacity-50"
+                                    className="px-4 py-2 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-colors flex items-center gap-2 disabled:opacity-50"
                                 >
                                     {uploading ? <Loader2 className="animate-spin" size={18} /> : <Upload size={18} />}
                                     Upload Logo
@@ -190,7 +190,7 @@ export default function SettingsPage() {
                 {/* Hero Image Section */}
                 <div>
                     <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                        <User size={20} className="text-neon-cyan" />
+                        <User size={20} className="text-white" />
                         Hero Image
                     </h3>
                     <p className="text-gray-400 mb-4 text-sm">
@@ -211,7 +211,7 @@ export default function SettingsPage() {
                                 <button
                                     onClick={() => heroInputRef.current?.click()}
                                     disabled={uploadingHero}
-                                    className="px-4 py-2 bg-neon-cyan text-black font-bold rounded-lg hover:bg-neon-cyan/80 transition-colors flex items-center gap-2 disabled:opacity-50"
+                                    className="px-4 py-2 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-colors flex items-center gap-2 disabled:opacity-50"
                                 >
                                     {uploadingHero ? <Loader2 className="animate-spin" size={18} /> : <Upload size={18} />}
                                     Upload Photo

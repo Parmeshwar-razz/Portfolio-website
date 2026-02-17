@@ -51,7 +51,7 @@ export default function MessagesPage() {
                     <div className="text-center text-gray-500 py-12">No messages yet.</div>
                 ) : (
                     messages.map((msg) => (
-                        <Card key={msg.id} className={`p-6 bg-white/5 border-white/10 ${msg.status === 'unread' ? 'border-l-4 border-l-neon-cyan' : ''}`}>
+                        <Card key={msg.id} className={`p-6 bg-white/5 border-white/10 ${msg.status === 'unread' ? 'border-l-4 border-l-white' : ''}`}>
                             <div className="flex justify-between items-start mb-4">
                                 <div className="flex items-center gap-3">
                                     <div className="p-2 bg-white/10 rounded-full">
@@ -70,7 +70,7 @@ export default function MessagesPage() {
                                     {msg.status === 'unread' && (
                                         <button
                                             onClick={() => markAsRead(msg.id)}
-                                            className="text-xs text-neon-cyan hover:underline"
+                                            className="text-xs text-gray-400 hover:text-white hover:underline"
                                         >
                                             Mark as Read
                                         </button>

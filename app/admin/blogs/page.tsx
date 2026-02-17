@@ -144,7 +144,7 @@ export default function BlogsPage() {
                             type="text"
                             value={formData.title}
                             onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                            className="w-full bg-black border border-white/10 rounded-lg p-2 focus:border-neon-cyan outline-none"
+                            className="w-full bg-black border border-white/10 rounded-lg p-2 focus:border-white outline-none"
                             required
                         />
                     </div>
@@ -155,7 +155,7 @@ export default function BlogsPage() {
                                 type="text"
                                 value={formData.slug}
                                 onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-                                className="w-full bg-black border border-white/10 rounded-lg p-2 focus:border-neon-cyan outline-none"
+                                className="w-full bg-black border border-white/10 rounded-lg p-2 focus:border-white outline-none"
                                 required
                             />
                         </div>
@@ -165,7 +165,7 @@ export default function BlogsPage() {
                                 type="text"
                                 value={formData.category}
                                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                                className="w-full bg-black border border-white/10 rounded-lg p-2 focus:border-neon-cyan outline-none"
+                                className="w-full bg-black border border-white/10 rounded-lg p-2 focus:border-white outline-none"
                                 required
                             />
                         </div>
@@ -177,7 +177,7 @@ export default function BlogsPage() {
                                 type="text"
                                 value={formData.read_time}
                                 onChange={(e) => setFormData({ ...formData, read_time: e.target.value })}
-                                className="w-full bg-black border border-white/10 rounded-lg p-2 focus:border-neon-cyan outline-none"
+                                className="w-full bg-black border border-white/10 rounded-lg p-2 focus:border-white outline-none"
                                 placeholder="e.g. 5 min read"
                                 required
                             />
@@ -187,7 +187,7 @@ export default function BlogsPage() {
                             <select
                                 value={formData.status}
                                 onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
-                                className="w-full bg-black border border-white/10 rounded-lg p-2 focus:border-neon-cyan outline-none"
+                                className="w-full bg-black border border-white/10 rounded-lg p-2 focus:border-white outline-none"
                             >
                                 <option value="published">Published</option>
                                 <option value="draft">Draft</option>
@@ -199,7 +199,7 @@ export default function BlogsPage() {
                         <textarea
                             value={formData.content}
                             onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                            className="w-full h-48 bg-black border border-white/10 rounded-lg p-2 focus:border-neon-cyan outline-none"
+                            className="w-full h-48 bg-black border border-white/10 rounded-lg p-2 focus:border-white outline-none"
                             required
                         />
                     </div>

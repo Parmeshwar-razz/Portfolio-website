@@ -40,7 +40,7 @@ export function AdminSidebar() {
         <aside className="w-64 bg-black border-r border-white/10 h-screen fixed left-0 top-0 flex flex-col">
             <div className="p-6 border-b border-white/10">
                 <h2 className="text-xl font-bold text-white">
-                    <span className="text-neon-cyan">Admin</span> Panel
+                    <span className="text-white">Admin</span> Panel
                 </h2>
             </div>
 
@@ -52,7 +52,7 @@ export function AdminSidebar() {
                             key={item.href}
                             href={item.href}
                             className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${isActive
-                                ? "bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20"
+                                ? "bg-white/10 text-white border border-white/20"
                                 : "text-gray-400 hover:text-white hover:bg-white/5"
                                 }`}
                         >

@@ -38,22 +38,22 @@ export function Blog() {
         <section id="blog" className="py-20 bg-black/50">
             <div className="container mx-auto px-4">
                 <div className="flex items-center gap-4 mb-16">
-                    <div className="h-px flex-1 bg-gradient-to-r from-transparent to-neon-blue/50"></div>
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent to-white/20"></div>
                     <h2 className="text-3xl md:text-4xl font-bold text-center">
-                        Latest <span className="text-neon-blue">Articles</span>
+                        Latest <span className="text-white">Articles</span>
                     </h2>
-                    <div className="h-px flex-1 bg-gradient-to-l from-transparent to-neon-blue/50"></div>
+                    <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/20"></div>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-8">
                     {posts.map((post) => (
-                        <article key={post.id} className="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-neon-blue/30 transition-all group">
+                        <article key={post.id} className="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-white/30 active:border-white/30 transition-all group">
                             <div className="flex items-center gap-4 text-xs text-gray-500 mb-4">
-                                <span className="text-neon-blue bg-neon-blue/10 px-2 py-1 rounded">{post.category}</span>
+                                <span className="text-gray-300 bg-white/10 px-2 py-1 rounded">{post.category}</span>
                                 <span className="flex items-center gap-1"><Clock size={12} /> {post.read_time}</span>
                             </div>
 
-                            <h3 className="text-xl font-bold mb-3 group-hover:text-neon-blue transition-colors line-clamp-2">
+                            <h3 className="text-xl font-bold mb-3 text-white transition-colors line-clamp-2">
                                 {post.title}
                             </h3>
 
@@ -61,7 +61,7 @@ export function Blog() {
                                 {post.content.substring(0, 150)}...
                             </p>
 
-                            <Link href={`/blog/${post.slug}`} className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-neon-blue transition-colors">
+                            <Link href={`/blog/${post.slug}`} className="inline-flex items-center gap-2 text-sm font-bold text-gray-300 hover:text-white active:text-white transition-colors">
                                 Read More <ArrowRight size={16} />
                             </Link>
                         </article>

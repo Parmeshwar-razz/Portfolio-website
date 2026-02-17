@@ -36,38 +36,38 @@ export function Projects() {
         <section id="projects" className="py-20 bg-transparent">
             <div className="container mx-auto px-4">
                 <div className="flex items-center gap-4 mb-16">
-                    <div className="h-px flex-1 bg-gradient-to-r from-transparent to-neon-cyan/50"></div>
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent to-white/20"></div>
                     <h2 className="text-3xl md:text-4xl font-bold text-center">
-                        Featured <span className="text-neon-cyan">Projects</span>
+                        Featured <span className="text-white">Projects</span>
                     </h2>
-                    <div className="h-px flex-1 bg-gradient-to-l from-transparent to-neon-cyan/50"></div>
+                    <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/20"></div>
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {projects.length > 0 ? (
                         projects.map((project) => (
-                            <div key={project.id} className="group bg-white/5 border border-white/10 rounded-xl overflow-hidden hover:border-neon-cyan/50 transition-all duration-300 hover:-translate-y-2">
+                            <div key={project.id} className="group bg-white/5 border border-white/10 rounded-xl overflow-hidden hover:border-white/30 active:border-white/30 transition-all duration-300 hover:-translate-y-2 active:-translate-y-2">
                                 <div className="relative aspect-video overflow-hidden bg-black">
                                     {project.image_url ? (
                                         <Image
                                             src={project.image_url}
                                             alt={project.title}
                                             fill
-                                            className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                            className="object-cover transition-transform duration-500 group-hover:scale-110 group-active:scale-110"
                                         />
                                     ) : (
                                         <div className="flex items-center justify-center h-full text-gray-600">
                                             <Folder size={48} />
                                         </div>
                                     )}
-                                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4 backdrop-blur-sm">
+                                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4 backdrop-blur-sm">
                                         {project.github_url && (
-                                            <a href={project.github_url} target="_blank" rel="noreferrer" className="p-3 bg-white/10 rounded-full hover:bg-neon-cyan hover:text-black transition-colors">
+                                            <a href={project.github_url} target="_blank" rel="noreferrer" className="p-3 bg-white/10 rounded-full hover:bg-white active:bg-white hover:text-black active:text-black transition-colors">
                                                 <Github size={20} />
                                             </a>
                                         )}
                                         {project.live_url && (
-                                            <a href={project.live_url} target="_blank" rel="noreferrer" className="p-3 bg-white/10 rounded-full hover:bg-neon-cyan hover:text-black transition-colors">
+                                            <a href={project.live_url} target="_blank" rel="noreferrer" className="p-3 bg-white/10 rounded-full hover:bg-white active:bg-white hover:text-black active:text-black transition-colors">
                                                 <ExternalLink size={20} />
                                             </a>
                                         )}
@@ -75,8 +75,8 @@ export function Projects() {
                                 </div>
 
                                 <div className="p-6">
-                                    <div className="text-xs text-neon-cyan mb-2 font-mono">{project.category}</div>
-                                    <h3 className="text-xl font-bold mb-3 group-hover:text-neon-cyan transition-colors">{project.title}</h3>
+                                    <div className="text-xs text-gray-400 mb-2 font-mono">{project.category}</div>
+                                    <h3 className="text-xl font-bold mb-3 text-white transition-colors">{project.title}</h3>
                                     <p className="text-gray-400 text-sm mb-4 line-clamp-3">
                                         {project.description}
                                     </p>

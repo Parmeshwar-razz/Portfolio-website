@@ -151,7 +151,7 @@ export default function AdminCertificatesPage() {
         setIsModalOpen(true);
     };
 
-    if (loading && certificates.length === 0) return <Loader2 className="animate-spin text-neon-cyan" />;
+    if (loading && certificates.length === 0) return <Loader2 className="animate-spin text-white" />;
 
     return (
         <div className="space-y-6">
@@ -162,7 +162,7 @@ export default function AdminCertificatesPage() {
                 </div>
                 <button
                     onClick={openNewModal}
-                    className="px-4 py-2 bg-neon-blue text-white font-bold rounded-lg hover:bg-neon-blue/80 transition-colors flex items-center gap-2"
+                    className="px-4 py-2 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-colors flex items-center gap-2"
                 >
                     <Plus size={20} /> Add Certificate
                 </button>
@@ -188,7 +188,7 @@ export default function AdminCertificatesPage() {
 
                         <div className="flex-1">
                             <h3 className="text-lg font-bold line-clamp-1">{cert.title}</h3>
-                            <p className="text-neon-cyan text-sm">{cert.issuer}</p>
+                            <p className="text-gray-400 text-sm">{cert.issuer}</p>
                             <div className="flex items-center gap-2 text-gray-500 text-xs mt-2">
                                 <Calendar size={14} />
                                 {new Date(cert.issue_date).toLocaleDateString()}
@@ -222,7 +222,7 @@ export default function AdminCertificatesPage() {
                     <div className="flex justify-center mb-6">
                         <div
                             onClick={() => fileInputRef.current?.click()}
-                            className="w-full h-48 bg-white/5 border-2 border-dashed border-white/20 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-neon-cyan/50 transition-colors relative overflow-hidden"
+                            className="w-full h-48 bg-white/5 border-2 border-dashed border-white/20 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-white/50 transition-colors relative overflow-hidden"
                         >
                             {formData.image_url ? (
                                 <Image
@@ -253,7 +253,7 @@ export default function AdminCertificatesPage() {
                             type="text"
                             value={formData.title}
                             onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                            className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-neon-blue outline-none text-white"
+                            className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-white outline-none text-white"
                             required
                         />
                     </div>
@@ -265,7 +265,7 @@ export default function AdminCertificatesPage() {
                                 type="text"
                                 value={formData.issuer}
                                 onChange={(e) => setFormData({ ...formData, issuer: e.target.value })}
-                                className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-neon-blue outline-none text-white"
+                                className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-white outline-none text-white"
                                 required
                             />
                         </div>
@@ -275,7 +275,7 @@ export default function AdminCertificatesPage() {
                                 type="date"
                                 value={formData.issue_date}
                                 onChange={(e) => setFormData({ ...formData, issue_date: e.target.value })}
-                                className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-neon-blue outline-none text-white"
+                                className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-white outline-none text-white"
                             />
                         </div>
                     </div>
@@ -286,14 +286,14 @@ export default function AdminCertificatesPage() {
                             type="url"
                             value={formData.credential_url}
                             onChange={(e) => setFormData({ ...formData, credential_url: e.target.value })}
-                            className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-neon-blue outline-none text-white"
+                            className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-white outline-none text-white"
                         />
                     </div>
 
                     <button
                         type="submit"
                         disabled={loading || uploading}
-                        className="w-full py-3 rounded-lg bg-neon-blue text-white font-bold hover:bg-neon-blue/80 transition-all flex items-center justify-center gap-2 mt-4"
+                        className="w-full py-3 rounded-lg bg-white text-black font-bold hover:bg-gray-200 transition-all flex items-center justify-center gap-2 mt-4"
                     >
                         {loading ? <Loader2 className="animate-spin" size={20} /> : (editingCert ? "Update Certificate" : "Add Certificate")}
                     </button>

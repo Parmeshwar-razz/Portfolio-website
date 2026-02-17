@@ -5,22 +5,22 @@ import { Brain, Database, LineChart, Code2 } from "lucide-react";
 export function About() {
     const features = [
         {
-            icon: <Brain className="text-neon-cyan" size={32} />,
+            icon: <Brain className="text-white" size={32} />,
             title: "Machine Learning",
             description: "Developing predictive models and deep learning algorithms using PyTorch and TensorFlow."
         },
         {
-            icon: <Database className="text-neon-blue" size={32} />,
+            icon: <Database className="text-white" size={32} />,
             title: "Big Data Engineering",
             description: "Architecting scalable data pipelines and ETL processes with SQL, Spark, and Cloud services."
         },
         {
-            icon: <LineChart className="text-purple-500" size={32} />,
+            icon: <LineChart className="text-white" size={32} />,
             title: "Data Visualization",
             description: "Creating interactive dashboards and storytelling with data using Tableau, PowerBI, and D3.js."
         },
         {
-            icon: <Code2 className="text-green-500" size={32} />,
+            icon: <Code2 className="text-white" size={32} />,
             title: "Full Stack Integration",
             description: "Deploying ML models into production web applications using FastAPI, Flask, and Next.js."
         }
@@ -30,11 +30,11 @@ export function About() {
         <section id="about" className="py-20 bg-transparent relative">
             <div className="container mx-auto px-4">
                 <div className="flex items-center gap-4 mb-16">
-                    <div className="h-px flex-1 bg-gradient-to-r from-transparent to-neon-cyan/50"></div>
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent to-white/20"></div>
                     <h2 className="text-3xl md:text-4xl font-bold text-center">
-                        About <span className="text-neon-cyan">Me</span>
+                        About <span className="text-white">Me</span>
                     </h2>
-                    <div className="h-px flex-1 bg-gradient-to-l from-transparent to-neon-cyan/50"></div>
+                    <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/20"></div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
@@ -51,8 +51,8 @@ export function About() {
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                         {features.map((feature, index) => (
-                            <div key={index} className="p-6 bg-white/5 border border-white/10 rounded-xl hover:border-neon-cyan/30 transition-colors group">
-                                <div className="mb-4 p-3 bg-black rounded-lg w-fit group-hover:scale-110 transition-transform">
+                            <div key={index} className="p-6 bg-white/5 border border-white/10 rounded-xl hover:border-white/30 active:border-white/30 transition-colors group">
+                                <div className="mb-4 p-3 bg-black rounded-lg w-fit group-hover:scale-110 group-active:scale-110 transition-transform">
                                     {feature.icon}
                                 </div>
                                 <h3 className="font-bold text-white mb-2">{feature.title}</h3>
