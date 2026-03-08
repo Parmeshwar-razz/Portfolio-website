@@ -15,6 +15,7 @@ export function Hero() {
             const { data } = await supabase
                 .from("site_settings")
                 .select("resume_url, hero_image_url")
+                .limit(1)
                 .single();
             if (data) {
                 if (data.resume_url) setResumeUrl(data.resume_url);
@@ -60,7 +61,6 @@ export function Hero() {
                                 </Button>
                             </a>
                         )}
-                        console.log(resumeUrl)
                     </div>
                 </div>
 

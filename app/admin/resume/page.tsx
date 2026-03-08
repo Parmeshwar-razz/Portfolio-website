@@ -56,14 +56,20 @@ export default function ResumePage() {
             .getPublicUrl(filePath);
 
         // 3. Update Database
-        const { error: dbError } = await supabase
-            .from("site_settings")
-            .update({ resume_url: publicUrl })
-            .eq("id", 1); // Assuming single row for settings
+        const { data: settings } = await supabase.from('site_settings').select('id').limit(1).single();
 
-        // If no row exists, insert one
-        if (dbError) {
-            await supabase.from("site_settings").insert([{ id: 1, resume_url: publicUrl }]);
+        if (settings) {
+            const { error: updateError } = await supabase
+                .from("site_settings")
+                .update({ resume_url: publicUrl })
+                .eq("id", settings.id);
+
+            if (updateError) {
+                alert("Error updating database: " + updateError.message);
+            }
+        } else {
+            // If no row exists, insert one
+            await supabase.from("site_settings").insert([{ resume_url: publicUrl }]);
         }
 
         setResumeUrl(publicUrl);
@@ -73,10 +79,14 @@ export default function ResumePage() {
     const handleDelete = async () => {
         if (!confirm("Are you sure you want to delete the resume?")) return;
 
-        await supabase
-            .from("site_settings")
-            .update({ resume_url: null })
-            .eq("id", 1);
+        const { data: settings } = await supabase.from('site_settings').select('id').limit(1).single();
+
+        if (settings) {
+            await supabase
+                .from("site_settings")
+                .update({ resume_url: null })
+                .eq("id", settings.id);
+        }
 
         setResumeUrl(null);
     };

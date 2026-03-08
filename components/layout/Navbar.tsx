@@ -21,6 +21,7 @@ export function Navbar() {
             const { data } = await supabase
                 .from("site_settings")
                 .select("logo_url")
+                .limit(1)
                 .single();
             if (data) setLogoUrl(data.logo_url);
         };
