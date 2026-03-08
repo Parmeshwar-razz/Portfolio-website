@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import ThreeBackground from "@/components/ThreeBackground";
+import dynamic from "next/dynamic";
+const ThreeBackground = dynamic(() => import("@/components/ThreeBackground"), { ssr: false });
+import AIChatBot from "@/components/AIChatBot";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +22,7 @@ export default function RootLayout({
             <body className={`${inter.className} bg-black text-white selection:bg-white/20 selection:text-white`}>
                 <ThreeBackground />
                 {children}
+                <AIChatBot />
             </body>
         </html>
     );

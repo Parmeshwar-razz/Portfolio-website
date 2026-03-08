@@ -135,10 +135,10 @@ export default function ThreeBackground() {
                 <group>
                     {/* Sparkles for dynamic movement */}
                     <Sparkles
-                        count={200}
+                        count={100}
                         scale={[12, 12, 12]}
                         size={3}
-                        speed={0.4}
+                        speed={0.3}
                         opacity={0.5}
                         noise={0.2}
                         color="#00f3ff"

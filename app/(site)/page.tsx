@@ -9,7 +9,9 @@ import { Projects } from "@/components/sections/Projects";
 import { DataScienceLab } from "@/components/sections/DataScienceLab";
 import { Blog } from "@/components/sections/Blog";
 import { Contact } from "@/components/sections/Contact";
-import { Certificates } from "@/components/sections/Certificates";
+import dynamic from "next/dynamic";
+const DatasetExplorer = dynamic(() => import("@/components/DatasetExplorer"), { ssr: false });
+const Certificates = dynamic(() => import("@/components/sections/Certificates").then(mod => mod.Certificates), { ssr: false });
 import { Loader2 } from "lucide-react";
 
 const sectionComponents: { [key: string]: React.ComponentType<any> } = {
@@ -21,6 +23,7 @@ const sectionComponents: { [key: string]: React.ComponentType<any> } = {
     "Blog": Blog,
     "Contact": Contact,
     "Certificates": Certificates,
+    "Dataset Explorer": DatasetExplorer,
 };
 
 export default function Home() {
@@ -46,6 +49,7 @@ export default function Home() {
                     { name: "Projects", is_visible: true },
                     { name: "Data Science Lab", is_visible: true },
                     { name: "Blog", is_visible: true },
+                    { name: "Dataset Explorer", is_visible: true },
                     { name: "Certificates", is_visible: true },
                     { name: "Contact", is_visible: true },
                 ]);
