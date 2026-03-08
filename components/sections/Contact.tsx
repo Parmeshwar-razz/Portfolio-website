@@ -5,6 +5,8 @@ import { supabase } from "@/lib/supabase";
 import { Button } from "@/components/ui/Button";
 import { Send, Mail, MapPin, Phone } from "lucide-react";
 
+import { sendEmail } from "@/lib/actions";
+
 export function Contact() {
     const [formData, setFormData] = useState({
         name: "",
@@ -18,11 +20,25 @@ export function Contact() {
         e.preventDefault();
         setLoading(true);
 
-        const { error } = await supabase
+        // 1. Save to Supabase
+        const { error: dbError } = await supabase
             .from("messages")
             .insert([formData]);
 
-        if (!error) {
+        if (dbError) {
+            console.error("Error saving message to database:", dbError);
+        }
+
+        // 2. Send Email
+        const { error: emailError } = await sendEmail(formData);
+
+        if (emailError) {
+            console.error("Error sending email:", emailError);
+            // We don't necessarily want to block the success message if email fails 
+            // but DB succeeded, or vice versa. But for now, let's treat it as a background task.
+        }
+
+        if (!dbError) {
             setSuccess(true);
             setFormData({ name: "", email: "", message: "" });
             setTimeout(() => setSuccess(false), 5000);
