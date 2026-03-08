@@ -14,9 +14,6 @@ import {
   Area,
   LineChart,
   Line,
-  Defs,
-  LinearGradient,
-  Stop,
 } from 'recharts';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
