@@ -38,6 +38,7 @@ export default function Home() {
                 .order("order_index", { ascending: true });
 
             if (!error && data) {
+                console.log("Sections from DB:", data);
                 setSections(data);
             } else {
                 // Fallback if DB is empty or error
@@ -73,6 +74,7 @@ export default function Home() {
             {sections.map((section) => {
                 if (!section.is_visible) return null;
                 const Component = sectionComponents[section.name];
+                console.log(`Rendering section: ${section.name}`, !!Component);
                 return Component ? <Component key={section.name} /> : null;
             })}
         </div>
