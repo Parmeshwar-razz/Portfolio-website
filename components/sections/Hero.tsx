@@ -60,6 +60,7 @@ export function Hero() {
                                 </Button>
                             </a>
                         )}
+                        console.log(resumeUrl)
                     </div>
                 </div>
 
